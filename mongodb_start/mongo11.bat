@@ -1,1 +1,0 @@
-mongod --journal --dbpath C:\mongodb\data\db --logpath C:\mongodb\data\log --storageEngine=mmapv1
