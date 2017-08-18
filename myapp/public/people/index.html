@@ -8,22 +8,23 @@
 </head>
 <body>
 	用户名：<input type="text" name="" class="login-name"><span></span><br>
-	密码：<input type="text" name="" class="login-password"><span></span><br>
+	密码：<input type="password" name="" class="login-password"><span></span><br>
 	<input type="button" name="" value="登录" class="login-btn">
 	<a href="reg.html"><input type="button" name="" value="注册" class="login-reg"></a>
 
 </body>
 <script type="text/javascript" src="/javascripts/jquery.js"></script>
 <script type="text/javascript">
+//	判断是否存在
 	$('.login-name').on('blur',function(){
 		var username = $(this).val();
 		$.ajax({
-		   type: "post",
-		   url: "../users/isUse",
+		   	type: "post",
+		   	url: "../users/isUse",
 		  	data: "username=" + username,
-		   dataType: "json",//后台处理后返回的数据格式
-		   beforeSend:function(){},
-		   success: function(msg){
+		   	dataType: "json",//后台处理后返回的数据格式
+		   	beforeSend:function(){},
+		   	success: function(msg){
 		    	if(msg.isUse){
 		    		$('.login-name').next().html('用户不存在！马上去<a href="reg.html">注册</a>');
 		    		$('.login-btn').attr('disabled','disabled');
@@ -34,7 +35,7 @@
 		   }
 		});
 	});
-
+//判断密码
 	$('.login-btn').on("click",function(){
 		var username = $('.login-name').val();
 		var password = $('.login-password').val();

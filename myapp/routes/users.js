@@ -23,6 +23,13 @@ router.post("/login",function(req,res,next){
 	});
 });
 
+router.post("/reg",function(req,res,next){
+	var username=req.body.username; 
+	var password=req.body.password;
+	UserService.reg(username,password,function(data){
+		res.send(data);
+	})
+})
 
 
 module.exports = router;

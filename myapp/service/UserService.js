@@ -15,7 +15,11 @@ exports.login = function(username,password,callback){
 	})
 };
 
-
+exports.reg = function(username,password,callback){
+	UserDao.reg(username,password,function(data){
+		callback(data)
+	})
+}
 
 
 

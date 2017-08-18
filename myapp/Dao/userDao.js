@@ -31,11 +31,21 @@ exports.login = function(username,password,callback){
 	})
 
 
-
-
 }
 
-
+//注册
+exports.reg = function(username,password,callback){
+	new Usermodal({
+		username: username,
+		password: password
+	}).save(function(err, data) {
+		if(data) {
+			callback("true");
+		} else {
+			callback("false");
+		}
+	})
+}
 
 
 
