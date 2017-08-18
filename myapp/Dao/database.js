@@ -1,5 +1,5 @@
 var mongoose = require( 'mongoose' );
-var dbURI = 'mongodb://localhost:27017/people';
+var dbURI = 'mongodb://localhost:27017/users';
 var db=mongoose.connect(dbURI);
 function getConn() {
 	db.connection.on("error", function(error) {
