@@ -13,6 +13,7 @@
 	<a href="reg.html"><input type="button" name="" value="注册" class="login-reg"></a>
 	<div class="login-suc"></div>
 	年龄：<input type="rext" name="" class="login-age"><span></span><br>
+	座右铭：<input type="rext" name="" class="login-val"><span></span><br>
 	<button class="pj-btn">提交</button>
 	
 </body>
@@ -20,11 +21,7 @@
 <script type="text/javascript" src="/javascripts/login.js"></script>
 <script type="text/javascript">
 	$('.pj-btn').click(function(){
-		var age = $('.login-age').val();
-		if(age == ''){
-			$('.login-age').next().html('<span style="color:red;">不能为空!</span>');
-			return
-		}
+		
 		$.ajax({
 		   	type: "post",
 		   	url: "../users/isLogin",
@@ -33,13 +30,29 @@
 		   		$('.login-age').next().html('查询中...');
 		   	},
 		   	success: function(msg){
+		   		
+				var age = $('.login-age').val();
+				var nikename = $('.login-val').val();
+
+				if(age == ''){
+					$('.login-age').next().html('<span style="color:red;">不能为空!</span>');
+					return
+				}
+				if(nikename == ''){
+					$('.login-val').next().html('<span style="color:red;">不能为空!</span>');
+					return
+				}
+				$('.login-age').next().html('');
+				$('.login-val').next().html('');
+
+
 		   		$('.login-age').next().html('');
 		    	if(msg){
 		    		var username = msg;
 		    		$.ajax({
 					   	type: "post",
 					   	url: "../users/setAge",	
-					   	data: "username="+username+"&age="+age,			  
+					   	data: "username="+username+"&age="+age+"&nikename="+nikename,			  
 					   	dataType: "json",//后台处理后返回的数据格式
 					   	beforeSend:function(){$('.login-age').next().html('修改中...');},
 					   	success: function(msg){

@@ -21,8 +21,8 @@ exports.reg = function(username,password,callback){
 	})
 }
 
-exports.setAge = function(username,age,callback){
-	UserDao.setAge(username,age,function(data){
+exports.setAge = function(username,age,nikename,callback){
+	UserDao.setAge(username,age,nikename,function(data){
 		callback(data);
 	})
 }

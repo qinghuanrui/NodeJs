@@ -50,12 +50,13 @@ exports.reg = function(username,password,callback){
 	})
 }
 
-exports.setAge = function(username,age,callback){
+exports.setAge = function(username,age,nikename,callback){
 
 	Usermodal.update({
 		username: username
 	},{
-		age:age
+		age:age,
+		nikename:nikename
 	},function(err,data){
 		if(data) {
 			callback("true");

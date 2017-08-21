@@ -47,7 +47,8 @@ router.post("/reg",function(req,res,next){
 router.post('/setAge',function(req,res,next){
 	var username=req.body.username;
 	var age=req.body.age;
-	UserService.setAge(username,age,function(data){
+	var nikename=req.body.nikename;
+	UserService.setAge(username,age,nikename,function(data){
 		res.send(data);
 	})
 })
