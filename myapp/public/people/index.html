@@ -11,8 +11,56 @@
 	密码：<input type="password" name="" class="login-password"><span></span><br>
 	<input type="button" name="" value="登录" class="login-btn">
 	<a href="reg.html"><input type="button" name="" value="注册" class="login-reg"></a>
-
+	<div class="login-suc"></div>
+	年龄：<input type="rext" name="" class="login-age"><span></span><br>
+	<button class="pj-btn">提交</button>
+	
 </body>
 <script type="text/javascript" src="/javascripts/jquery.js"></script>
 <script type="text/javascript" src="/javascripts/login.js"></script>
+<script type="text/javascript">
+	$('.pj-btn').click(function(){
+		var age = $('.login-age').val();
+		if(age == ''){
+			$('.login-age').next().html('<span style="color:red;">不能为空!</span>');
+			return
+		}
+		$.ajax({
+		   	type: "post",
+		   	url: "../users/isLogin",
+		   	// dataType: "json",//后台处理后返回的数据格式
+		   	beforeSend:function(){
+		   		$('.login-age').next().html('查询中...');
+		   	},
+		   	success: function(msg){
+		   		$('.login-age').next().html('');
+		    	if(msg){
+		    		var username = msg;
+		    		$.ajax({
+					   	type: "post",
+					   	url: "../users/setAge",	
+					   	data: "username="+username+"&age="+age,			  
+					   	dataType: "json",//后台处理后返回的数据格式
+					   	beforeSend:function(){$('.login-age').next().html('修改中...');},
+					   	success: function(msg){
+					    	if(msg){
+					    		$('.login-age').next().html('修改成功!');
+					    	}else{
+					    		$('.login-age').next().html('修改失败!');
+					    	}
+					   }
+					});
+		    	}else{
+					$('.login-age').next().html('未登录');
+		    	}
+		   }
+		});
+
+
+	});
+
+
+
+
+</script>
 </html>

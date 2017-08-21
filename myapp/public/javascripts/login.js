@@ -29,17 +29,21 @@
 		   	data: "username=" + username + "&password=" + password,
 		   	dataType: "json",//后台处理后返回的数据格式
 		   	beforeSend:function(){
-		   		$('.login-password').next().html('正在验证...');
+		   		$('.login-suc').html('正在验证...');
 		   	},
 		   	success: function(msg){
-		   		$('.login-password').next().html('');
+		   		
 		    	// console.log(msg[0]);
 		    	if(msg[0].password != password){
 		    		$('.login-password').next().html('密码错误!');
 		    	}else{
 		    		$('.login-password').next().html('');
-		    		alert('登录成功！')
+		    		$('.login-suc').html('登录成功！');
 		    	}
+		   	},
+		   	error:function(XMLHttpRequest,textStatus,errorThrown){
+		   		console.log(XMLHttpRequest,textStatus,errorThrown);
+				$('.login-suc').html(textStatus);
 		   	}
 		});
 	})

@@ -1,14 +1,7 @@
 //	判断是否存在
 	$('.reg-name').on('blur',function(){
 		var username = $(this).val();
-		if(username != ""){
-			$(this).next().html('');
-		    $('.reg-btn').attr('disabled',false);
-		}else{
-			$(this).next().html('不能为空！');
-			$('.reg-btn').attr('disabled','disabled');
-			return
-		}
+		
 		$.ajax({
 		   	type: "post",
 		   	url: "../users/isUse",

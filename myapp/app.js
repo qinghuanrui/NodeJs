@@ -8,6 +8,9 @@ var bodyParser = require('body-parser');
 var index = require('./routes/index');
 var users = require('./routes/users');
 
+var session = require('express-session');
+var cookie = require("cookie-parser");
+
 var database = require("./dao/database");
 database.getConn();
 
@@ -26,6 +29,15 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 //提供静态资源文件的访问
 app.use(express.static('public'));
+
+app.use(cookie());
+app.use(session({
+	
+	secret:'keyboard cat',
+	cookie:{
+		maxAge:1000*60*60 //过期时间
+	}
+})) ;
 
 
 app.use('/', index);

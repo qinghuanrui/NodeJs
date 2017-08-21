@@ -17,7 +17,13 @@ exports.login = function(username,password,callback){
 
 exports.reg = function(username,password,callback){
 	UserDao.reg(username,password,function(data){
-		callback(data)
+		callback(data);
+	})
+}
+
+exports.setAge = function(username,age,callback){
+	UserDao.setAge(username,age,function(data){
+		callback(data);
 	})
 }
 

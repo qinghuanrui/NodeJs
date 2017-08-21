@@ -7,26 +7,47 @@ router.get('/', function(req, res, next) {
   res.send('respond with a resource');
 });
 
+
+
 router.post("/isUse",function(req,res,next){
 	var username=req.body.username;  
 	UserService.isUse(username, function(data) {
-		
 		res.send(data);
 	});
 });
 
+
 router.post("/login",function(req,res,next){
-	var username=req.body.username; 
-	var password=req.body.password;  
+	var username = req.body.username; 
+	var password = req.body.password;
 	UserService.login(username,password,function(data) {
+		req.session.username = username;
 		res.send(data);
 	});
 });
+
+router.post("/isLogin",function(req,res,next){
+	if(req.session.username){
+		res.send(req.session.username);
+	}else{
+		res.send('false');
+	}
+});
+
+
 
 router.post("/reg",function(req,res,next){
 	var username=req.body.username; 
 	var password=req.body.password;
 	UserService.reg(username,password,function(data){
+		res.send(data);
+	})
+});
+
+router.post('/setAge',function(req,res,next){
+	var username=req.body.username;
+	var age=req.body.age;
+	UserService.setAge(username,age,function(data){
 		res.send(data);
 	})
 })

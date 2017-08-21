@@ -20,6 +20,7 @@ exports.isUse = function(username, callback) {
 
 };
 
+
 //登录用户密码
 exports.login = function(username,password,callback){
 	
@@ -44,6 +45,22 @@ exports.reg = function(username,password,callback){
 		} else {
 			callback("false");
 		}
+	})
+}
+
+exports.setAge = function(username,age,callback){
+	
+	Usermodal.update({
+		username: username
+	},{
+		age:age
+	},function(err,data){
+		if(data) {
+			callback("true");
+		} else {
+			callback("false");
+		}
+		
 	})
 }
 

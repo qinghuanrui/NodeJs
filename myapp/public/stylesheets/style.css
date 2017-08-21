@@ -9,9 +9,8 @@ a {
 }
 
 *{
-	cursor:url('../images/ico.ico'),-moz-zoom-out;
+	cursor:url('../images/cur.ico'),-moz-zoom-out;
 }
 *{
-  cursor:url('../images/ico.ico'),auto;
-
+  	cursor:url('../images/cur.ico'),auto;
 }
