@@ -7,7 +7,8 @@ var UserSchema = new mongoose.Schema({
 	username:String,
 	password:String,
 	nikename:String,
-	age:String
+	age:String,
+	date:String
 },{versionKey: false});
 
 

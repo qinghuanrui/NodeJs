@@ -36,9 +36,11 @@ exports.login = function(username,password,callback){
 
 //注册
 exports.reg = function(username,password,callback){
+	var date = new Date();
 	new Usermodal({
 		username: username,
-		password: password
+		password: password,
+		date:date 
 	}).save(function(err, data) {
 		if(data) {
 			callback("true");
@@ -49,7 +51,7 @@ exports.reg = function(username,password,callback){
 }
 
 exports.setAge = function(username,age,callback){
-	
+
 	Usermodal.update({
 		username: username
 	},{
