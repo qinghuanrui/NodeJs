@@ -27,6 +27,11 @@ exports.setAge = function(username,age,nikename,callback){
 	})
 }
 
+exports.setMessage = function(username,setname,message,callback){
+	UserDao.setMessage(username,setname,message,function(data){
+		callback(data);
+	})
+}
 
 
 

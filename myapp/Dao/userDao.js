@@ -1,5 +1,6 @@
 
 var Usermodal = require("./modal/Usermodal").UserModel;
+var MessageModal = require("./modal/Messagemodal").MessageModal;
 //是否被使用
 exports.isUse = function(username, callback) {
 
@@ -47,7 +48,9 @@ exports.reg = function(username,password,callback){
 		} else {
 			callback("false");
 		}
-	})
+	});
+	
+
 }
 
 exports.setAge = function(username,age,nikename,callback){
@@ -68,4 +71,32 @@ exports.setAge = function(username,age,nikename,callback){
 }
 
 
+exports.setMessage = function(username,setname,message,callback){
+	
+	var date = new Date();
+	Usermodal.update({
+		username: username
+	},{
+		messages:[{
+			setname:setname,
+			message:message,
+			setdate:date
+		}]
+	},function(err,data){
 
+		if(data) {
+			callback("true");
+		} else {
+			callback("false");
+		}
+		
+	})
+	
+
+}
+
+//var Ba={Apid:[new DBRef('people',ObjectId("599d269adc3f9f19b091fd90"))],value:3}  
+
+
+//查询全部
+//MyStudent.find({}, function(err, docs) {});

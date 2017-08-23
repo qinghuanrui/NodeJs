@@ -7,6 +7,7 @@ var bodyParser = require('body-parser');
 
 var index = require('./routes/index');
 var users = require('./routes/users');
+var setMessages = require('./routes/setMessages');
 
 var session = require('express-session');
 var cookie = require("cookie-parser");
@@ -42,6 +43,7 @@ app.use(session({
 
 app.use('/', index);
 app.use('/users', users);
+app.use('/setMessages', setMessages);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

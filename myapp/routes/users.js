@@ -16,6 +16,17 @@ router.post("/isUse",function(req,res,next){
 	});
 });
 
+// router.get("/login", function(req, res) {
+// 	var username = req.query.username;
+// 	var password = req.query.password;
+// 	//调用服务层接口
+// 	UserService.login(username, password, function(url) {
+		
+// 			req.session.username = username;
+// 			res.send("true");
+		
+// 	});
+// });
 
 router.post("/login",function(req,res,next){
 	var username = req.body.username; 
@@ -52,6 +63,19 @@ router.post('/setAge',function(req,res,next){
 		res.send(data);
 	})
 })
+
+router.post('/setMessage',function(req,res,next){
+	var username=req.body.username;
+	var setname=req.body.setname;
+	var message=req.body.message;
+	UserService.setMessage(username,setname,message,function(data){
+		res.send(data);
+	})
+})
+
+
+
+
 
 
 module.exports = router;

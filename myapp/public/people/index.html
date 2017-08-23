@@ -14,8 +14,9 @@
 	<div class="login-suc"></div>
 	年龄：<input type="rext" name="" class="login-age"><span></span><br>
 	座右铭：<input type="rext" name="" class="login-val"><span></span><br>
-	<button class="pj-btn">提交</button>
-	
+	<button class="pj-btn">提交</button><br>
+	留言：<input type="rext" name="" class="mes-val"><span></span><br>
+	<button class="mes-btn">提交</button>
 </body>
 <script type="text/javascript" src="/javascripts/jquery.js"></script>
 <script type="text/javascript" src="/javascripts/login.js"></script>
@@ -69,11 +70,48 @@
 		   }
 		});
 
-
 	});
 
 
+	$('.mes-btn').on('click',function(){
+		var message = $('.mes-val').val();
 
+		$.ajax({
+		   	type: "post",
+		   	url: "../users/isLogin",
+		   	dataType: "json",//后台处理后返回的数据格式
+		   	beforeSend:function(){
+		   		$('.mes-val').next().html('查询中...');
+		   	},
+		   	success: function(msg){
+		   		if(msg){
+		   			var setname = msg;
+		   			var username = msg;
+		   			$.ajax({
+					   	type: "post",
+					   	url: "/users/setMessage",	
+					   	data: "username="+username+"&setname="+setname+"&message="+message,			  
+					   	dataType: "json",//后台处理后返回的数据格式
+					   	beforeSend:function(){$('.mes-val').next().html('提交中...');},
+					   	success: function(msg){
+
+					    	if(msg){
+					    		$('.mes-val').next().html('成功！');
+					    	}else{
+					    		$('.mes-val').next().html('失败！');
+					    	}
+					   }
+					});
+		   		}else{
+		   			$('.mes-val').next().html('未登录！');
+		   		}
+		 		
+		    	
+		   }
+		});
+
+
+	});
 
 </script>
 </html>

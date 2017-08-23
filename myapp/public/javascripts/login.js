@@ -25,7 +25,7 @@
 
 		$.ajax({
 		   	type: "post",
-		   	url: "../users/login",
+		   	url: "/users/login",
 		   	data: "username=" + username + "&password=" + password,
 		   	dataType: "json",//后台处理后返回的数据格式
 		   	beforeSend:function(){
@@ -33,7 +33,6 @@
 		   	},
 		   	success: function(msg){
 		   		
-		    	// console.log(msg[0]);
 		    	if(msg[0].password != password){
 		    		$('.login-password').next().html('密码错误!');
 		    	}else{
