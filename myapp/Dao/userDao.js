@@ -21,7 +21,6 @@ exports.isUse = function(username, callback) {
 
 };
 
-
 //登录用户密码
 exports.login = function(username,password,callback){
 	
@@ -31,7 +30,6 @@ exports.login = function(username,password,callback){
 		
 		callback(data);
 	})
-
 
 }
 
@@ -50,7 +48,6 @@ exports.reg = function(username,password,callback){
 		}
 	});
 	
-
 }
 
 exports.setAge = function(username,age,nikename,callback){
@@ -74,15 +71,13 @@ exports.setAge = function(username,age,nikename,callback){
 exports.setMessage = function(username,setname,message,callback){
 	
 	var date = new Date();
-	Usermodal.update({
-		username: username
-	},{
-		messages:[{
+	new Usermodal({
+		messages:{
 			setname:setname,
 			message:message,
 			setdate:date
-		}]
-	},function(err,data){
+		}
+	}).save(function(err,data){
 
 		if(data) {
 			callback("true");
